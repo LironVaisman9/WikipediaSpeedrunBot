@@ -5,7 +5,7 @@
 #include <vector>
 #include <unordered_set>
 
-std::unordered_set<std::string> get_hrefs(std::stringstream& strStream)
+std::unordered_set<std::string> getHrefs(std::stringstream& strStream)
 {
     std::unordered_set<std::string> hrefs;
 
@@ -28,7 +28,7 @@ std::unordered_set<std::string> get_hrefs(std::stringstream& strStream)
     return hrefs;
 }
 
-size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::stringstream* buffer) 
+size_t writeCallback(void* contents, size_t size, size_t nmemb, std::stringstream* buffer) 
 {
     size_t totalSize = size * nmemb;
     *buffer << std::string((char*)contents, totalSize);
@@ -50,7 +50,7 @@ int main()
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);  
         
         // Use a write callback to write to `response`
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &bufferData);
         
         // Force HTTP/1.1
@@ -70,7 +70,7 @@ int main()
         }
         else 
         {
-            std::unordered_set<std::string> hrefs = get_hrefs(bufferData);
+            std::unordered_set<std::string> hrefs = getHrefs(bufferData);
             std::cout << "size: " << hrefs.size() << std::endl;
             for (const std::string& href : hrefs)
             {

@@ -9,10 +9,11 @@ private:
 	bool _connected;
 public:
 	WikiConnection();
-	WikiConnection(std::string pageName);
+	WikiConnection(const std::string& pageName);
+	~WikiConnection();
+
 	std::string getPageName() const;
 	bool isConnected() const;
 	void getLinks(); //Replace void with the data structure that we will use for the links
-	~WikiConnection();
 };
 
