@@ -87,13 +87,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\User\Documents\Programing\Cpp\SouthChampions\WikipediaSpeedrunBot\WikiSpeedrunBotProject\libraries\include\curl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>libraries\include\curl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>libcurl.dll.a;libssl.a;libcrypto.a;libz.a;libbrotlidec.a;libbrotlicommon.a</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\User\Documents\Programing\Cpp\SouthChampions\WikipediaSpeedrunBot\WikiSpeedrunBotProject\libraries\lib\curl;C:\Users\User\Documents\Programing\Cpp\SouthChampions\WikipediaSpeedrunBot\WikiSpeedrunBotProject\libraries\lib\curl;(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>libraries\lib\curl;C:\Users\User\Documents\Programing\Cpp\SouthChampions\WikipediaSpeedrunBot\WikiSpeedrunBotProject\libraries\lib\curl;(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -107,7 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\User\Documents\Programing\Cpp\SouthChampions\WikipediaSpeedrunBot\WikiSpeedrunBotProject\libraries\include\curl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>libraries\include\curl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -115,7 +115,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>libcurl.dll.a;libssl.a;libcrypto.a;libz.a;libbrotlidec.a;libbrotlicommon.a</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\User\Documents\Programing\Cpp\SouthChampions\WikipediaSpeedrunBot\WikiSpeedrunBotProject\libraries\lib\curl;C:\Users\User\Documents\Programing\Cpp\SouthChampions\WikipediaSpeedrunBot\WikiSpeedrunBotProject\libraries\lib\curl;(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>libraries\lib\curl;C:\Users\User\Documents\Programing\Cpp\SouthChampions\WikipediaSpeedrunBot\WikiSpeedrunBotProject\libraries\lib\curl;(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -127,13 +127,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\User\Documents\Programing\Cpp\SouthChampions\WikipediaSpeedrunBot\WikiSpeedrunBotProject\libraries\include\curl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>libraries\include\curl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>libcurl.dll.a;libssl.a;libcrypto.a;libz.a;libbrotlidec.a;libbrotlicommon.a</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\User\Documents\Programing\Cpp\SouthChampions\WikipediaSpeedrunBot\WikiSpeedrunBotProject\libraries\lib\curl;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>libraries\lib\curl;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,7 +144,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\User\Documents\Programing\Cpp\SouthChampions\WikipediaSpeedrunBot\WikiSpeedrunBotProject\libraries\include\curl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>libraries\include\curl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,7 +152,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>libcurl.dll.a;libssl.a;libcrypto.a;libz.a;libbrotlidec.a;libbrotlicommon.a</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\User\Documents\Programing\Cpp\SouthChampions\WikipediaSpeedrunBot\WikiSpeedrunBotProject\libraries\lib\curl;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>libraries\lib\curl;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
