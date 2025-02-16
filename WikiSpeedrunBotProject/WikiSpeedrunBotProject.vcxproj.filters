@@ -18,12 +18,12 @@
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WikiConnection.cpp">
+    <ClCompile Include="WikiSession.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WikiConnection.h">
+    <ClInclude Include="WikiSession.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

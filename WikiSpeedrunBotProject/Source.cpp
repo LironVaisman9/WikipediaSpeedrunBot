@@ -4,6 +4,9 @@
 #include <sstream>
 #include <vector>
 #include <unordered_set>
+#include <chrono>
+#include <ctime>
+#include "WikiSession.h"
 
 std::unordered_set<std::string> getHrefs(std::stringstream& strStream)
 {
@@ -39,55 +42,68 @@ int main()
 {
     CURL* curl = curl_easy_init();
 
-    if (curl) 
+    //if (curl) 
+    //{
+    //    clock_t start_time = clock();
+    //    std::stringstream bufferData;
+    //    
+    //    // HTTP request
+    //    curl_easy_setopt(curl, CURLOPT_URL, "http://en.wikipedia.org/wiki/Israel"); 
+    //    
+    //    // Follow redirects
+    //    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);  
+    //    
+    //    // Use a write callback to write to `response`
+    //    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeCallback);
+    //    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &bufferData);
+    //    
+    //    // Force HTTP/1.1
+    //    curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1); 
+
+    //    // Disable SSL certificate verification
+    //    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+    //    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+
+    //    // Get result of operation
+    //    CURLcode res = curl_easy_perform(curl);
+
+    //    
+    //    if (res != CURLE_OK) 
+    //    {
+    //        std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
+    //    }
+    //    else 
+    //    {
+    //        std::vector<std::string> hrefs = WikiSession::getLinks(bufferData);
+    //        clock_t end_time = clock();
+    //        double time_taken = double(end_time - start_time) / CLOCKS_PER_SEC;
+    //        std::cout << "It took " << time_taken << " seconds" << std::endl;
+    //        std::cout << "size: " << hrefs.size() << std::endl;
+    //        for (const std::string& href : hrefs)
+    //        {
+    //            std::cout << href << std::endl;
+    //        }
+
+    //        std::ofstream file("sample.html");
+    //        file << bufferData.str();
+    //        
+    //        std::cout << "Successfull operation!";
+    //    }
+
+    //    curl_easy_cleanup(curl);
+    //}
+    //else 
+    //{
+    //    std::cerr << "Failed to initialize cURL.\n";
+    //}
+
+    WikiSession* session = new WikiSession();
+    session->sendHttpRequest("Israel");
+    std::vector<std::string> hrefs = session->getLinks();
+    std::cout << "size: " << hrefs.size() << std::endl;
+    for (const std::string& href : hrefs)
     {
-        std::stringstream bufferData;
-        
-        // HTTP request
-        curl_easy_setopt(curl, CURLOPT_URL, "http://en.wikipedia.org/wiki/Germany"); 
-        
-        // Follow redirects
-        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);  
-        
-        // Use a write callback to write to `response`
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeCallback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &bufferData);
-        
-        // Force HTTP/1.1
-        curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1); 
-
-        // Disable SSL certificate verification
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
-
-        // Get result of operation
-        CURLcode res = curl_easy_perform(curl);
-
-        
-        if (res != CURLE_OK) 
-        {
-            std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
-        }
-        else 
-        {
-            std::unordered_set<std::string> hrefs = getHrefs(bufferData);
-            std::cout << "size: " << hrefs.size() << std::endl;
-            for (const std::string& href : hrefs)
-            {
-                std::cout << href << std::endl;
-            }
-
-            std::ofstream file("sample.html");
-            file << bufferData.str();
-            
-            std::cout << "Successfull operation!";
-        }
-
-        curl_easy_cleanup(curl);
-    }
-    else 
-    {
-        std::cerr << "Failed to initialize cURL.\n";
+        std::cout << href << std::endl;
     }
 
     return 0;
