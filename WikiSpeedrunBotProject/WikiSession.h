@@ -6,6 +6,8 @@
 #include <fstream>
 #include <sstream>
 
+#define PAGE_DOESNT_EXIST "Wikipedia does not have an article with this exact name"
+
 class WikiSession
 {
 private:
@@ -13,10 +15,8 @@ private:
 	std::stringstream _bufferData;
 public:
 	WikiSession();
-	void startSession();
-	void endSession();
-	void sendHttpRequest(std::string pageName);
+	void sendHttpRequest(const std::string& pageName);
 	std::vector<std::string> getLinks();
-	//~WikiSession();
+	~WikiSession();
 };
 
