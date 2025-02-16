@@ -13,6 +13,8 @@ private:
 	std::stringstream _bufferData;
 public:
 	WikiSession();
+	void startSession();
+	void endSession();
 	void sendHttpRequest(std::string pageName);
 	std::vector<std::string> getLinks();
 	//~WikiSession();

@@ -9,8 +9,12 @@ size_t writeCallback(void* contents, size_t size, size_t nmemb, std::stringstrea
 
 WikiSession::WikiSession()
 {
+    
+}
+
+void WikiSession::startSession()
+{
     _curl = curl_easy_init();
-    //curl_easy_setopt(_curl, CURLOPT_URL, url);
 
     // Follow redirects
     curl_easy_setopt(_curl, CURLOPT_FOLLOWLOCATION, 1L);
@@ -27,10 +31,17 @@ WikiSession::WikiSession()
     curl_easy_setopt(_curl, CURLOPT_SSL_VERIFYHOST, 0L);
 }
 
+void WikiSession::endSession()
+{
+    curl_easy_cleanup(_curl);
+}
+
 void WikiSession::sendHttpRequest(std::string pageName)
 {
     std::string url = "http://en.wikipedia.org/wiki/" + pageName;
-    curl_easy_setopt(_curl, CURLOPT_URL, url);
+    _bufferData.str("");
+    _bufferData.clear();
+    curl_easy_setopt(_curl, CURLOPT_URL, url.c_str());
     CURLcode res = curl_easy_perform(_curl);
 }
 
