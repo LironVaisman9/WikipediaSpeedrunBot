@@ -7,55 +7,56 @@
 #include <chrono>
 #include <ctime>
 #include "WikiSession.h"
+#include "Timer.h"
 
 
 int main() 
 {
     WikiSession session;
-    clock_t start_time = clock();
-    session.sendHttpRequest("Israel");
-    std::vector<std::string> hrefs = session.getLinks();
-    clock_t end_time = clock();
-    double time_taken = double(end_time - start_time) / CLOCKS_PER_SEC;
-    for (const std::string& href : hrefs)
+    Timer timer;
+    
+    timer.start();
+    std::vector<std::string> israelHrefs = session.getPageLinks("Israel");
+    double timeTaken = timer.getDuration();
+    
+    std::cout << "Israel hrefs:\n=========================" << std::endl;
+    for (const std::string& href : israelHrefs)
     {
         std::cout << href << std::endl;
     }
 
     std::cout << "-------------------------------------------" << std::endl;
 
-    clock_t start_time2 = clock();
-    //Use this to check non existed wiki pages
-    //session.sendHttpRequest("Radfsrtia");
-    session.sendHttpRequest("Russia");
-    std::vector<std::string> hrefs2 = session.getLinks();
-    clock_t end_time2 = clock();
-    double time_taken2 = double(end_time2 - start_time2) / CLOCKS_PER_SEC;
-    for (const std::string& href : hrefs2)
+    timer.start();
+    std::vector<std::string> russiaHrefs = session.getPageLinks("Russia");
+    double timeTaken2 = timer.getDuration();
+    
+    std::cout << "Russia hrefs:\n=========================" << std::endl;
+    for (const std::string& href : russiaHrefs)
     {
         std::cout << href << std::endl;
     }
 
     std::cout << "-------------------------------------------" << std::endl;
 
-    clock_t start_time3 = clock();
-    session.sendHttpRequest("China");
-    std::vector<std::string> hrefs3 = session.getLinks();
-    clock_t end_time3 = clock();
-    double time_taken3 = double(end_time3 - start_time3) / CLOCKS_PER_SEC;
-    for (const std::string& href : hrefs3)
+    timer.start();
+    std::vector<std::string> chinaHrefs= session.getPageLinks("China");
+    double timeTaken3 = timer.getDuration();
+    
+    std::cout << "China hrefs:\n=========================" << std::endl;
+    for (const std::string& href : chinaHrefs)
     {
         std::cout << href << std::endl;
     }
 
-    std::cout << "Israel size: " << hrefs.size() << std::endl;
-    std::cout << "Israel time: " << time_taken << " seconds" << std::endl;
+    std::cout << "Israel size: " << israelHrefs.size() << std::endl;
+    std::cout << "Israel time: " << timeTaken << " microseconds" << std::endl;
 
-    std::cout << "Russia size: " << hrefs2.size() << std::endl;
-    std::cout << "Russia time: " << time_taken2 << " seconds" << std::endl;
+    std::cout << "Russia size: " << russiaHrefs.size() << std::endl;
+    std::cout << "Russia time: " << timeTaken2 << " microseconds" << std::endl;
 
-    std::cout << "China size: " << hrefs3.size() << std::endl;
-    std::cout << "China time: " << time_taken2 << " seconds" << std::endl;
+    std::cout << "China size: " << chinaHrefs.size() << std::endl;
+    std::cout << "China time: " << timeTaken3 << " microseconds" << std::endl;
 
     return 0;
 }

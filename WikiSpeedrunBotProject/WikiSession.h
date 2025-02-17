@@ -10,13 +10,18 @@
 
 class WikiSession
 {
+public:
+	WikiSession();
+	~WikiSession();
+
+	std::vector<std::string> getPageLinks(const std::string& pageName);
+
+private:
+	void sendHttpRequest(const std::string& pageName);
+	std::vector<std::string> bufferToLinks();
+
 private:
 	CURL* _curl;
 	std::stringstream _bufferData;
-public:
-	WikiSession();
-	void sendHttpRequest(const std::string& pageName);
-	std::vector<std::string> getLinks();
-	~WikiSession();
 };
 
