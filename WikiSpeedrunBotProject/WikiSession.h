@@ -15,10 +15,12 @@ public:
 	~WikiSession();
 
 	std::vector<std::string> getPageLinks(const std::string& pageName);
+	void saveHtmlLocally(const std::string& pageName,const std::string& filePath);
 
 private:
 	void sendHttpRequest(const std::string& pageName);
-	std::vector<std::string> bufferToLinks();
+	std::vector<std::string> bufferToLinks() const;
+	void saveBufferAsHtml(const std::string& filePath) const;
 
 private:
 	CURL* _curl;

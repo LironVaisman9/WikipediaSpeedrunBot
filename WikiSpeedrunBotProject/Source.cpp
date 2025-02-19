@@ -58,5 +58,7 @@ int main()
     std::cout << "China size: " << chinaHrefs.size() << std::endl;
     std::cout << "China time: " << timeTaken3 << " microseconds" << std::endl;
 
+    session.saveHtmlLocally("Israel", "C:\\Users\\453D~1\\Desktop");
+
     return 0;
 }
