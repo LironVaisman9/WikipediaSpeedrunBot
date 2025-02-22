@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="hash_map">
+      <UniqueIdentifier>{8643d417-657f-4788-9b3c-c3efe9f3a0fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -24,6 +27,9 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProcessManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WikiSession.h">
@@ -31,6 +37,21 @@
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WikiStructs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hash_map\bytell_hash_map.hpp">
+      <Filter>hash_map</Filter>
+    </ClInclude>
+    <ClInclude Include="hash_map\flat_hash_map.hpp">
+      <Filter>hash_map</Filter>
+    </ClInclude>
+    <ClInclude Include="hash_map\unordered_map.hpp">
+      <Filter>hash_map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
