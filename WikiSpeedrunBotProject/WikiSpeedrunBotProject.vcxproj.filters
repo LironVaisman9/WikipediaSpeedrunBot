@@ -30,6 +30,9 @@
     <ClCompile Include="ProcessManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PriorityThreadManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WikiSession.h">
@@ -52,6 +55,9 @@
     </ClInclude>
     <ClInclude Include="hash_map\unordered_map.hpp">
       <Filter>hash_map</Filter>
+    </ClInclude>
+    <ClInclude Include="PriorityThreadManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
