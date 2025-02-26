@@ -33,22 +33,6 @@ void PriorityThreadManager::addTask(std::function<void(std::shared_ptr<void>)> f
 	std::cout << "Finished adding task\n";
 }
 
-void PriorityThreadManager::run()
-{
-	while (_running)
-	{
-		std::unique_lock<std::mutex> lock(_tasksMutex);
-		_taskCv.wait(lock, [&]() { return !_tasks.empty() || !_running; });
-
-		if (!_running)
-		{
-			break;
-		}
-
-		updateCurPriority();
-	}
-}
-
 void PriorityThreadManager::stop()
 {
 	{
@@ -72,6 +56,7 @@ void PriorityThreadManager::threadRun()
 	while(_running) 
 	{
 		Task task(nullptr, nullptr);
+
 
 		{
 			std::unique_lock<std::mutex> lock(_tasksMutex);
@@ -112,7 +97,6 @@ bool PriorityThreadManager::updateCurPriority()
 	{
 		return false;
 	}
-
 	_curPriority = *_activePriorities.begin(); // lowest value in set 
 
 	return true;

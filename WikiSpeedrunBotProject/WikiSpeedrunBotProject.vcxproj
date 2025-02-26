@@ -156,19 +156,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ProcessManager.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="PriorityThreadManager.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="WikiApple.cpp" />
     <ClCompile Include="WikiSession.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hash_map\bytell_hash_map.hpp" />
     <ClInclude Include="hash_map\flat_hash_map.hpp" />
     <ClInclude Include="hash_map\unordered_map.hpp" />
-    <ClInclude Include="ProcessManager.h" />
     <ClInclude Include="PriorityThreadManager.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="WikiApple.h" />
     <ClInclude Include="WikiSession.h" />
     <ClInclude Include="WikiStructs.h" />
   </ItemGroup>

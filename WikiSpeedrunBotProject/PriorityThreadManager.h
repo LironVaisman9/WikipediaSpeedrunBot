@@ -11,7 +11,6 @@
 struct Task 
 {
 	Task(std::function<void(std::shared_ptr<void>)> func, std::shared_ptr<void> data);
-
 	std::function<void(std::shared_ptr<void>)> func;
 	std::shared_ptr<void> data;
 };
@@ -24,10 +23,9 @@ public:
 
 	void addTask(std::function<void(std::shared_ptr<void>)> func, unsigned int priority, std::shared_ptr<void> data);
 
-	void run();
 	void stop();
 	
-	static const unsigned int PRIORITIES_AMOUNT = 10;
+	static const unsigned int MAX_PRIORITIES_AMOUNT = 10;
 
 private:
 	void threadRun();

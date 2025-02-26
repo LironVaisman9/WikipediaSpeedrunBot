@@ -27,10 +27,10 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ProcessManager.cpp">
+    <ClCompile Include="PriorityThreadManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PriorityThreadManager.cpp">
+    <ClCompile Include="WikiApple.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -39,9 +39,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ProcessManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WikiStructs.h">
@@ -57,6 +54,9 @@
       <Filter>hash_map</Filter>
     </ClInclude>
     <ClInclude Include="PriorityThreadManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WikiApple.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
