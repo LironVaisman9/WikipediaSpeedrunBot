@@ -22,15 +22,12 @@ PriorityThreadManager::~PriorityThreadManager()
 void PriorityThreadManager::addTask(std::function<void(std::shared_ptr<void>)> func, unsigned int priority, std::shared_ptr<void> data)
 {
 	{
-		std::cout << "Adding task\n";
 		std::lock_guard<std::mutex> lock(_tasksMutex);
 		_tasks[priority].emplace_back(func, data);
 		_activePriorities.insert(priority);
-		std::cout << "End adding task\n";
 	}
 
 	_taskCv.notify_one();
-	std::cout << "Finished adding task\n";
 }
 
 void PriorityThreadManager::stop()
@@ -56,8 +53,6 @@ void PriorityThreadManager::threadRun()
 	while(_running) 
 	{
 		Task task(nullptr, nullptr);
-
-
 		{
 			std::unique_lock<std::mutex> lock(_tasksMutex);
 			_taskCv.wait(lock, [&]() { return !_tasks.empty() || !_running; });
@@ -85,7 +80,6 @@ void PriorityThreadManager::threadRun()
 				_tasks.erase(_curPriority);
 			}
 		}
-
 		// Execute the function outside the lock
 		task.func(task.data);
 	}
