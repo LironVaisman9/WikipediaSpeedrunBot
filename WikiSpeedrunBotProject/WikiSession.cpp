@@ -57,17 +57,6 @@ void WikiSession::sendHttpRequest(const std::string& pageName)
     std::string url = "http://en.wikipedia.org/wiki/" + pageName;
     curl_easy_setopt(_curl, CURLOPT_URL, url.c_str());
     curl_easy_setopt(_curl, CURLOPT_TIMEOUT, 10L);
-
-    // Follow redirects
-    curl_easy_setopt(_curl, CURLOPT_FOLLOWLOCATION, 1L);
-    // Use a write callback to write to `response`
-    curl_easy_setopt(_curl, CURLOPT_WRITEFUNCTION, writeCallback);
-    curl_easy_setopt(_curl, CURLOPT_WRITEDATA, &_bufferData);
-    // Force HTTP/1.1
-    curl_easy_setopt(_curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-    // Disable SSL certificate verification
-    curl_easy_setopt(_curl, CURLOPT_SSL_VERIFYPEER, 0L);
-    curl_easy_setopt(_curl, CURLOPT_SSL_VERIFYHOST, 0L);
     
     // Send request
     CURLcode res = curl_easy_perform(_curl);
@@ -98,11 +87,28 @@ std::unordered_set<std::string> WikiSession::bufferToLinks() const
     size_t breakPos = page.find("<h2 id=\"See_also\">See also</h2>");
     if (breakPos == std::string::npos)
     {
-        breakPos = page.find("<h2 id=\"References\">References</h2>");
+        breakPos = page.find("<h2 id=\"Notes\">Notes</h2>");
     }
     if (breakPos == std::string::npos)
     {
-        throw std::runtime_error("Page should have `See_also` section");
+        breakPos = page.rfind("<h2 id=");
+        size_t endH2Pos = page.rfind("</h2>");
+        if (endH2Pos != std::string::npos && breakPos != std::string::npos)
+        {
+            std::string h2Data = page.substr(breakPos, endH2Pos);
+            if (!((h2Data.find("references") != std::string::npos) || (h2Data.find("References") != std::string::npos)))
+            {
+                breakPos == std::string::npos;
+            }
+        }
+        else
+        {
+            breakPos = page.length();
+        }
+    }
+    if (breakPos == std::string::npos)
+    {
+        breakPos = page.length();
     }
 
     while (pos < breakPos)
@@ -123,6 +129,10 @@ std::unordered_set<std::string> WikiSession::bufferToLinks() const
         }
         // Extract link from page pos
         std::string link = page.substr(pos, delimiter - pos);
+        if (link == "Help:Category")
+        {
+            break;
+        }
 
         if (startsWith(link, "Wikipedia:") || startsWith(link, "Special:") || link == "Main_Page" || link.find_first_of(":") != std::string::npos)
         {

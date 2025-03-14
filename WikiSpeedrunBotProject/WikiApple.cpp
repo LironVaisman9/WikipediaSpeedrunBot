@@ -9,20 +9,40 @@ void WikiApple::processPage(std::shared_ptr<ParamStruct> params, const unsigned 
 		return;
 	}
 
-	std::stringstream strStream;
-	strStream << "At depth: " << params->priority << " thread: #" << threadID << " | " << params->pageName << std::endl;
-	std::cout << strStream.rdbuf();
+	//std::stringstream strStream;
+	//strStream << "At depth: " << params->priority << " thread: #" << threadID << " | " << params->pageName << std::endl;
+	//std::cout << strStream.rdbuf();
 
-	std::unordered_set<std::string> pageLinks = _sessions[threadID]->getPageLinks(params->pageName);
+	if (params->priority == 3)
+	{
+		std::cout << "Did it!" << std::endl;
+	}
+
+	std::unordered_set<std::string> pageLinks;
+
+	try
+	{
+		 pageLinks = _sessions[threadID]->getPageLinks(params->pageName);
+	}
+	catch(std::exception& e)
+	{
+		std::cout << threadID << std::endl;
+		std::cout << params->pageName;
+		std::cout << "\n\n\n\n" << std::endl;
+	}
 
 	for (const auto& link : pageLinks)
 	{
-		if (_usedPages.find(link) != _usedPages.end())
 		{
-			continue;
-		}
+			std::lock_guard<std::mutex> lock(_visitedPagesMutex);
 
-		_usedPages.insert(link);
+			if (_usedPages.find(link) != _usedPages.end())
+			{
+				continue;
+			}
+
+			_usedPages.insert(link);
+		}
 
 		if (link != _endPage)
 		{

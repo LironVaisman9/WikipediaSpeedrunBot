@@ -22,6 +22,8 @@ private:
 
 	std::vector<std::unique_ptr<WikiSession>> _sessions;
 
+	std::mutex _visitedPagesMutex;
+
 private:
 	void processPage(std::shared_ptr<ParamStruct> params, const unsigned int threadID);
 	std::string idChainToString(std::vector<int> idChain);

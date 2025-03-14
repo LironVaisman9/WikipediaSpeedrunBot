@@ -121,7 +121,7 @@ void sampleThing()
 //}
 #include <memory>
 
-int main() 
+void multi()
 {
     WikiApple* apple = new WikiApple();
 
@@ -132,7 +132,11 @@ int main()
     {
         std::cout << path << std::endl;
     }
+}
 
+int main() 
+{
+    multi();
     return 0;
 }
 
