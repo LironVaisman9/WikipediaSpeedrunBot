@@ -9,6 +9,7 @@
 #include "PriorityThreadManager.h"
 #include "WikiSession.h"
 #include "Timer.h"
+#include "WikiApple.h"
 
 
 void sampleThing()
@@ -18,7 +19,7 @@ void sampleThing()
     Timer timer;
 
     timer.start();
-    std::vector<std::string> israelHrefs = session.getPageLinks("Israel");
+    std::unordered_set<std::string> israelHrefs = session.getPageLinks("Israel");
     double timeTaken = timer.getDuration();
 
     std::cout << "Israel hrefs:\n=========================" << std::endl;
@@ -30,7 +31,7 @@ void sampleThing()
     std::cout << "-------------------------------------------" << std::endl;
 
     timer.start();
-    std::vector<std::string> russiaHrefs = session.getPageLinks("Russia");
+    std::unordered_set<std::string> russiaHrefs = session.getPageLinks("Russia");
     double timeTaken2 = timer.getDuration();
 
     std::cout << "Russia hrefs:\n=========================" << std::endl;
@@ -42,7 +43,7 @@ void sampleThing()
     std::cout << "-------------------------------------------" << std::endl;
 
     timer.start();
-    std::vector<std::string> chinaHrefs = session.getPageLinks("China");
+    std::unordered_set<std::string> chinaHrefs = session.getPageLinks("China");
     double timeTaken3 = timer.getDuration();
 
     std::cout << "China hrefs:\n=========================" << std::endl;
@@ -118,10 +119,19 @@ void sampleThing()
 //
 //    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 //}
+#include <memory>
 
 int main() 
 {
-    
+    WikiApple* apple = new WikiApple();
+
+    std::vector<std::string> paths = apple->scrapWikipedia("Germany", "Apollo 11");
+
+    std::cout << "finished" << std::endl;
+    for (auto& path : paths)
+    {
+        std::cout << path << std::endl;
+    }
 
     return 0;
 }

@@ -8,10 +8,10 @@ struct WikiData
 {
 	std::vector<std::string> pathsToReuslt;
 };
-struct paramStruct
+struct ParamStruct
 {
-    paramStruct() = default;
-    paramStruct(PriorityThreadManager* threadManager, const int thisId, const std::vector<int>& idsChain, const int priority,const std::string& pageName) :
+    ParamStruct() = default;
+    ParamStruct(PriorityThreadManager* threadManager, const int thisId, const std::vector<int>& idsChain, const int priority,const std::string& pageName) :
         idsChain(idsChain),
         priority(priority),
         pageName(pageName)

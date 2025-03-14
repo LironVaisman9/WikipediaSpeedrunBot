@@ -10,8 +10,8 @@
 
 struct Task 
 {
-	Task(std::function<void(std::shared_ptr<void>)> func, std::shared_ptr<void> data);
-	std::function<void(std::shared_ptr<void>)> func;
+	Task(std::function<void(std::shared_ptr<void>, const unsigned int)> func, std::shared_ptr<void> data);
+	std::function<void(std::shared_ptr<void>, const unsigned int)> func;
 	std::shared_ptr<void> data;
 };
 
@@ -21,14 +21,14 @@ public:
 	PriorityThreadManager(unsigned int threadsAmount = std::thread::hardware_concurrency());
 	~PriorityThreadManager();
 
-	void addTask(std::function<void(std::shared_ptr<void>)> func, unsigned int priority, std::shared_ptr<void> data);
+	void addTask(std::function<void(std::shared_ptr<void>, const unsigned int)> func, unsigned int priority, std::shared_ptr<void> data);
 
 	void stop();
 	
 	static const unsigned int MAX_PRIORITIES_AMOUNT = 10;
 
 private:
-	void threadRun();
+	void threadRun(const unsigned int threadID);
 
 	/// <summary>
 	/// Updates the current priority variable to be an available task.
@@ -46,7 +46,7 @@ private:
 	bool _running;
 
 	std::vector<std::thread> _threads;
-	
+
 	std::map<unsigned int, std::vector<Task>> _tasks;
 	std::mutex _tasksMutex;
 	std::condition_variable _taskCv;

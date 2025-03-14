@@ -10,7 +10,7 @@ PriorityThreadManager::PriorityThreadManager(unsigned int threadsAmount)
 	_threads.reserve(threadsAmount);
 	for (unsigned int i = 0; i < threadsAmount; ++i)
 	{
-		_threads.emplace_back(&PriorityThreadManager::threadRun, this);
+		_threads.emplace_back(&PriorityThreadManager::threadRun, this, i);
 	}
 }
 
@@ -19,7 +19,7 @@ PriorityThreadManager::~PriorityThreadManager()
 	stop();
 }
 
-void PriorityThreadManager::addTask(std::function<void(std::shared_ptr<void>)> func, unsigned int priority, std::shared_ptr<void> data)
+void PriorityThreadManager::addTask(std::function<void(std::shared_ptr<void>, const unsigned int)> func, unsigned int priority, std::shared_ptr<void> data)
 {
 	{
 		std::lock_guard<std::mutex> lock(_tasksMutex);
@@ -48,7 +48,7 @@ void PriorityThreadManager::stop()
 	}
 }
 
-void PriorityThreadManager::threadRun()
+void PriorityThreadManager::threadRun(const unsigned int threadID)
 {
 	while(_running) 
 	{
@@ -81,7 +81,7 @@ void PriorityThreadManager::threadRun()
 			}
 		}
 		// Execute the function outside the lock
-		task.func(task.data);
+		task.func(task.data, threadID);
 	}
 }
 
@@ -96,5 +96,6 @@ bool PriorityThreadManager::updateCurPriority()
 	return true;
 }
 
-Task::Task(std::function<void(std::shared_ptr<void>)> func, std::shared_ptr<void> data) : func(func), data(data)
+Task::Task(std::function<void(std::shared_ptr<void>, const unsigned int)> func, std::shared_ptr<void> data) 
+	: func(func), data(data)
 {}
