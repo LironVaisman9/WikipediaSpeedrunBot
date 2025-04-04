@@ -1,6 +1,7 @@
 import requests
 from requests.utils import quote
 
+
 WIKIPEDIA_URL = "http://en.wikipedia.org/wiki/"
 
 BANNED = ['Main_Page', 'Wikipedia:', 'Special:', 'Talk:', 'Portal:', 'Help:', 'Template:',
@@ -26,6 +27,8 @@ Checks if a wiki page is valid
 @return true if the page is valid and false if not
 """
 def pageValid(page_name: str) -> bool:
+    if not page_name:
+        return False
     if not pageExists(page_name):
         return False
     for banned_string in BANNED:
