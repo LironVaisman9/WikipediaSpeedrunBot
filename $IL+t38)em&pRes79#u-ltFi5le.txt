@@ -1,0 +1,4 @@
+Germany->WW2->Israel->Pola
+Germany->David->China_Town->Pola
+Germany->Pols_Roys->Daniel->Pola
+Germany->WW1->Israel->Pola
